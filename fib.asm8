@@ -1,0 +1,23 @@
+; Fibonacci sequence in .asm8
+; up to 7 terms of the sequence to printout
+; 0, 1, 1, 2, 3, 5, 8, 13
+
+LDI 1       ; rA <- 1, load immediate 1 to reg A
+MOV rA rB   ; rB <- rA, move 1 from reg A to B
+LDI 0       ; rA <- 0, load immediate 0 to reg A
+
+OUT         ; output first 0
+
+loop:
+    MOV rB rC   ; rC <- rB, store temp (old B) value in reg C
+    ADD rA rB   ; rB <- rA + rB, add rA to rB
+    MOV rC rA   ; rA <- rC,  move old B to reg A
+
+    OUT         ; OUT <- rA, output reg A
+
+    JC end      ; jump carry to end
+
+    JMP loop    ; repeat
+
+end:
+    HLT
